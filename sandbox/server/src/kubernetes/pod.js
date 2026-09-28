@@ -1,4 +1,4 @@
-import { k8sCoreV1Api } from "./config";
+import { k8sCoreV1Api } from "./config.js";
 
 export async function createPod(sandboxId) {
     const podManifest = {
@@ -22,12 +22,12 @@ export async function createPod(sandboxId) {
                     ],
                     resources: {
                         requests: {
-                            memory: "500Mi",
-                            cpu: "1Gi"
-                        },
-                        limits: {
                             memory: "250Mi",
                             cpu: "500m"
+                        },
+                        limits: {
+                            memory: "500Mi",
+                            cpu: "1Gi"
                         }
                     }
                 }
