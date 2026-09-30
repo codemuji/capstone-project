@@ -6,6 +6,15 @@ const app = express()
 
 app.use(morgan('combined'))
 
+
+app.get('/api/status/healthz', (req, res) => {
+    res.status(200).json({ status: "OK" })
+})
+
+app.get('/api/status/ready', (req, res) => {
+    res.status(200).json({ status: "OK" })
+})
+
 app.use((req, res, next) => {
     const host = req.headers.host
     const sandboxId = host.split('.')[0]
