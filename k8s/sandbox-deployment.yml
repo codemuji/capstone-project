@@ -9,14 +9,16 @@ spec:
   selector:
     matchLabels:
       app: sandbox
+      role: api
   template:
     metadata:
       labels:
         app: sandbox
+        role: api
     spec:
       serviceAccountName: resource-manager
       containers:
-      - image:  sandbox:latest
+      - image:  sandbox:v2
         imagePullPolicy: IfNotPresent
         name:  main-sandbox-container
         resources:
@@ -30,13 +32,13 @@ spec:
           httpGet:
             path: /api/sandbox/health
             port: 3000
-          initialDelaySeconds: 90
+          initialDelaySeconds: 15
           timeoutSeconds: 10
         readinessProbe:
           httpGet:
             path: /api/sandbox/health
             port: 3000
-          initialDelaySeconds: 30
+          initialDelaySeconds: 5
           timeoutSeconds: 10
         ports:
         - containerPort:  3000
